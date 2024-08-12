@@ -7,6 +7,7 @@ ActivatedNotebookImporter is a Python package developed and used internally by A
 - Import Jupyter notebooks as Python modules
 - Support for parameter substitution, enabling dynamic parameter setting
 - Ability to exclude specific cells from execution using tags
+- Automatic parameter detection from the first cell and cells tagged with "parameters"
 
 ## Use Case
 
@@ -47,8 +48,12 @@ print(result)
 In your Jupyter notebook:
 
 ```python
+# In the first cell or in cells tagged with "parameters"
+param1 = 'default1'
+param2 = 'default2'
+
 # In a code cell
-def my_function(param1='default1', param2='default2'):
+def my_function(param1=param1, param2=param2):
     # Your code here
     return some_result
 
@@ -56,6 +61,10 @@ def my_function(param1='default1', param2='default2'):
 # This cell won't be executed when the notebook is imported
 my_function()
 ```
+
+Note: 
+- The first cell of the notebook is assumed to contain parameters, which can be overwritten with the `params` argument when importing.
+- You can also tag cells with the "parameters" tag for them to be considered as parameter cells.
 
 ## Example: Hyperparameter Search
 
@@ -81,7 +90,6 @@ for params in hyperparameters:
 ## Internal Use at Activated AI
 
 ActivatedNotebookImporter is a tool used in various workflows at Activated AI. We use it to:
-
 - Integrate notebook-based code into larger systems
 - Easily reuse and parameterize notebook code
 - Maintain consistency between our exploratory notebooks and reusable code
