@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "activated-notebook-importer"
+version = "0.1.0"
+description = "An Activated AI utility for importing Jupyter notebooks as Python modules"
+readme = "README.md"
+authors = [{name = "Activated AI", email = "contact@activated-ai.com"}]
+license = {file = "LICENSE"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["activated ai", "jupyter", "notebook", "import", "module"]
+dependencies = [
+    "nbformat",
+    "nbparameterise",
+]
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://activated-ai.com"
+# Repository = "https://github.com/activated-ai/activated-notebook-importer"
+
+[project.optional-dependencies]
+dev = ["pytest"]
